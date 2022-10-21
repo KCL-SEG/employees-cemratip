@@ -23,8 +23,19 @@ class Employee:
       return self.bonus + (self.hours * self.pay) + (self.contracts * self.commission)
 
   def __str__(self):
-    return self.name
-
+    if self.contract == 'monthly':
+      contractFill = f'monthly salary of {self.pay}'
+    else:
+      contractFill = f'contract of {self.hours} hours at {self.pay}/hour'
+    if self.commission != 0:
+      commissionFill = f' and receives a commission for {self.contracts} contract(s) at {self.commission}/contract'
+    else:
+      commissionFill = ''
+    if self.bonus != 0:
+      bonusFill = f' and receives a bonus commission of {self.bonus}'
+    else:
+      bonusFill = ''
+    return f"{self.name} works on a {contractFill}{commissionFill}{bonusFill}. Their total pay is {self.get_pay()}."
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 billie = Employee('Billie', contract='monthly', pay=4000)
